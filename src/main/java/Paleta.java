@@ -7,29 +7,61 @@ import javax.persistence.Table;
 @Table(name = "Paleta")
 public class Paleta {
 
-  private String idPaleta;
-  private Float grosor;
-  private String idColor;
-  private String idFabricante;
-
   @Id
   @Column(name = "idPaleta")
+  private String idPaleta;
+
+  @Column(name = "grosor")
+  private Float grosor;
+
+  @Column(name = "idColor")
+  private String idColor;
+
+  @Column(name = "idFabricante")
+  private String idFabricante;
+
+  //CONSTRUCTOR
+
+  public Paleta(String idPaleta, Float grosor, String idColor, String idFabricante) {
+    this.idPaleta = idPaleta;
+    this.grosor = grosor;
+    this.idColor = idColor;
+    this.idFabricante = idFabricante;
+  }
+
+  //GETTERS
+
   public String getIdPaleta() {
     return idPaleta;
   }
 
-  @Column(name = "grosor")
   public Float getGrosor() {
     return grosor;
   }
 
-  @Column(name = "idColor")
   public String getIdColor() {
     return idColor;
   }
 
-  @Column(name = "idFabricante")
   public String getIdFabricante() {
     return idFabricante;
+  }
+
+  //SETTETS
+
+  public void setIdPaleta(String idPaleta) {
+    this.idPaleta = idPaleta;
+  }
+
+  public void setGrosor(Float grosor) {
+    this.grosor = grosor;
+  }
+
+  public void setIdColor(String idColor) {
+    this.idColor = idColor;
+  }
+
+  public void setIdFabricante(String idFabricante) {
+    this.idFabricante = idFabricante;
   }
 }

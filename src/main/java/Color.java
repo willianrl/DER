@@ -7,18 +7,37 @@ import javax.persistence.Table;
 @Table(name = "Color")
 public class Color {
 
-  private Long idColor;
-  private String descripcion;
-
   @Id
   @Column(name = "idColor")
+  private Long idColor;
+
+  @Column(name = "descripcion")
+  private String descripcion;
+
+  //CONSTRUCTOR
+
+  public Color(Long idColor, String descripcion) {
+    this.idColor = idColor;
+    this.descripcion = descripcion;
+  }
+
+  //GETTERS
+
   public Long getIdColor() {
     return idColor;
   }
 
-  @Column(name = "descripcion")
   public String getDescripcion() {
     return descripcion;
   }
 
+  //SETTERS
+
+  public void setIdColor(Long idColor) {
+    this.idColor = idColor;
+  }
+
+  public void setDescripcion(String descripcion) {
+    this.descripcion = descripcion;
+  }
 }

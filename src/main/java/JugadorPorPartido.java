@@ -6,22 +6,48 @@ import javax.persistence.Table;
 @Table(name = "JugadorPorPartido")
 public class JugadorPorPartido {
 
+  @Column(name = "idPartido")
   private String idPartido;
+
+  @Column(name = "idJugador")
   private String idJugador;
+
+  @Column(name = "idPaleta")
   private String idPaleta;
 
-  @Column(name = "idPartido")
+  //CONSTRUCTOR
+
+  public JugadorPorPartido(String idPartido, String idJugador, String idPaleta) {
+    this.idPartido = idPartido;
+    this.idJugador = idJugador;
+    this.idPaleta = idPaleta;
+  }
+
+  //GETTERS
+
   public String getIdPartido() {
     return idPartido;
   }
 
-  @Column(name = "idJugador")
   public String getIdJugador() {
     return idJugador;
   }
 
-  @Column(name = "idPaleta")
   public String getIdPaleta() {
     return idPaleta;
+  }
+
+  //SETTERS
+
+  public void setIdPartido(String idPartido) {
+    this.idPartido = idPartido;
+  }
+
+  public void setIdJugador(String idJugador) {
+    this.idJugador = idJugador;
+  }
+
+  public void setIdPaleta(String idPaleta) {
+    this.idPaleta = idPaleta;
   }
 }

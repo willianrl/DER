@@ -7,23 +7,49 @@ import javax.persistence.Table;
 @Table(name = "Fabricante")
 public class Fabricante {
 
-  private String idFabricante;
-  private String nombre;
-  private String domicilio;
-
   @Id
   @Column(name = "idFabricante")
+  private String idFabricante;
+
+  @Column(name = "nombre")
+  private String nombre;
+
+  @Column(name = "domicilio")
+  private String domicilio;
+
+  //CONSTRUCTOR
+
+  public Fabricante(String idFabricante, String nombre, String domicilio) {
+    this.idFabricante = idFabricante;
+    this.nombre = nombre;
+    this.domicilio = domicilio;
+  }
+
+  //GETTERS
+
   public String getIdFabricante() {
     return idFabricante;
   }
 
-  @Column(name = "nombre")
   public String getNombre() {
     return nombre;
   }
 
-  @Column(name = "domicilio")
   public String getDomicilio() {
     return domicilio;
+  }
+
+  //SETTERS
+
+  public void setIdFabricante(String idFabricante) {
+    this.idFabricante = idFabricante;
+  }
+
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
+  }
+
+  public void setDomicilio(String domicilio) {
+    this.domicilio = domicilio;
   }
 }

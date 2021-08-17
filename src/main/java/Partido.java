@@ -8,29 +8,62 @@ import java.time.LocalDateTime;
 @Table(name = "Partido")
 public class Partido {
 
-  private String idPartido;
-  private String idCancha;
-  private LocalDateTime inicioPartido;
-  private LocalDateTime finPartido;
 
   @Id
   @Column(name = "idPartido")
+  private String idPartido;
+
+  @Column(name = "idCancha")
+  private String idCancha;
+
+  @Column(name = "inicioPartido")
+  private LocalDateTime inicioPartido;
+
+  @Column(name = "finPartido")
+  private LocalDateTime finPartido;
+
+  //CONSTRUCTOR
+
+  public Partido(String idPartido, String idCancha, LocalDateTime inicioPartido, LocalDateTime finPartido) {
+    this.idPartido = idPartido;
+    this.idCancha = idCancha;
+    this.inicioPartido = inicioPartido;
+    this.finPartido = finPartido;
+  }
+
+  //GETTERS
+
   public String getIdPartido() {
     return idPartido;
   }
 
-  @Column(name = "idCancha")
   public String getIdCancha() {
     return idCancha;
   }
 
-  @Column(name = "inicioPartido")
   public LocalDateTime getInicioPartido() {
     return inicioPartido;
   }
 
-  @Column(name = "finPartido")
   public LocalDateTime getFinPartido() {
     return finPartido;
+  }
+
+  //SETTERS
+
+  public void setIdPartido(String idPartido) {
+    this.idPartido = idPartido;
+  }
+
+  public void setIdCancha(String idCancha) {
+    this.idCancha = idCancha;
+  }
+
+  public void setInicioPartido(LocalDateTime inicioPartido) {
+    this.inicioPartido = inicioPartido;
+  }
+
+  public void setFinPartido(LocalDateTime finPartido) {
+    this.finPartido = finPartido;
   }
 }
