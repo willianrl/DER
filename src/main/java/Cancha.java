@@ -11,7 +11,7 @@ public class Cancha {
   @Column(name = "nombre")
   private String nombre;
 
-  @OneToMany(cascade = { CascadeType.ALL })
+  @OneToOne(cascade = { CascadeType.ALL })
   @JoinColumn(name = "idColor")
   private Color color;
 
