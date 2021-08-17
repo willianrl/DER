@@ -1,35 +1,62 @@
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Cancha")
 public class Cancha {
 
-  private Long idCancha;
-  private String nombre;
-  private String idColor;
-  private Boolean iluminacion;
-
   @Id
   @Column(name = "idCancha")
+  private Long idCancha;
+
+  @Column(name = "nombre")
+  private String nombre;
+
+  @OneToMany(cascade = { CascadeType.ALL })
+  @JoinColumn(name = "idColor")
+  private Color color;
+
+  @Column(name = "iluminacion", updatable = false)
+  private Boolean iluminacion;
+
+  //Contractor
+
+  public Cancha(Long idCancha, String nombre, Color color, Boolean iluminacion) {
+    this.idCancha = idCancha;
+    this.nombre = nombre;
+    this.color = color;
+    this.iluminacion = iluminacion;
+  }
+
+  //GETTERS
+
   public Long getIdCancha() {
     return idCancha;
   }
 
-  @Column(name = "nombre")
   public String getNombre() {
     return nombre;
   }
 
-  @Column(name = "idColor")
-  public String getIdColor() {
-    return idColor;
+  public Color getColor() {
+    return color;
   }
 
-  @Column(name = "iluminacion", updatable = false)
   public Boolean getIluminacion() {
     return iluminacion;
   }
+
+  //SETTERS
+
+  public void setIdCancha(Long idCancha) {
+    this.idCancha = idCancha;
+  }
+
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
+  }
+
+  public void setColor(Color color) {
+    this.color = color;
+  }
+
 }
