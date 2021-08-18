@@ -15,6 +15,10 @@ public class Partido {
   @JoinColumn(name= "idCancha")
   private Cancha cancha;
 
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name= "idJugador")
+  private Jugador organizador;
+
   @Column(name = "inicioPartido")
   private LocalDateTime inicioPartido;
 

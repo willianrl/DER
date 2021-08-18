@@ -26,6 +26,8 @@ public class Jugador {
   @OneToMany(mappedBy = "jugador", cascade = CascadeType.ALL)
   private List<JugadorPorPartido> jugadorPorPartido = new ArrayList<>();
 
+  @OneToMany(mappedBy = "organizador", cascade = CascadeType.ALL)
+  private List<Partido> partidosOrganizados = new ArrayList<>();
   //CONSTRUCTOR
 
   public Jugador(String idJugador, String nombre, String apellido, String direccion, LocalDateTime fechaNacimiento) {
@@ -60,6 +62,10 @@ public class Jugador {
 
   public List<JugadorPorPartido> getJugadorPorPartido() {
     return jugadorPorPartido;
+  }
+
+  public List<Partido> getPartidosOrganizados() {
+    return partidosOrganizados;
   }
 
   //SETTERS
