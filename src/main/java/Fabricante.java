@@ -1,7 +1,6 @@
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Fabricante")
@@ -16,6 +15,9 @@ public class Fabricante {
 
   @Column(name = "domicilio")
   private String domicilio;
+
+  @OneToMany(mappedBy = "fabricante", cascade = CascadeType.ALL)
+  private List<Paleta> paletas = new ArrayList<>();
 
   //CONSTRUCTOR
 
@@ -39,6 +41,10 @@ public class Fabricante {
     return domicilio;
   }
 
+  public List<Paleta> getPaletas() {
+    return paletas;
+  }
+
   //SETTERS
 
   public void setIdFabricante(String idFabricante) {
@@ -52,4 +58,5 @@ public class Fabricante {
   public void setDomicilio(String domicilio) {
     this.domicilio = domicilio;
   }
+
 }

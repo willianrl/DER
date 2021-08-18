@@ -1,8 +1,7 @@
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Jugador")
@@ -23,6 +22,9 @@ public class Jugador {
 
   @Column(name = "fechaNacimiento")
   public LocalDateTime fechaNacimiento;
+
+  @OneToMany(mappedBy = "jugador", cascade = CascadeType.ALL)
+  private List<JugadorPorPartido> jugadorPorPartido = new ArrayList<>();
 
   //CONSTRUCTOR
 
@@ -54,6 +56,10 @@ public class Jugador {
 
   public LocalDateTime getFechaNacimiento() {
     return fechaNacimiento;
+  }
+
+  public List<JugadorPorPartido> getJugadorPorPartido() {
+    return jugadorPorPartido;
   }
 
   //SETTERS

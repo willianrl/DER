@@ -1,4 +1,6 @@
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Cancha")
@@ -11,12 +13,15 @@ public class Cancha {
   @Column(name = "nombre")
   private String nombre;
 
-  @OneToOne(cascade = { CascadeType.ALL })
-  @JoinColumn(name = "idColor")
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name= "idColor")
   private Color color;
 
   @Column(name = "iluminacion", updatable = false)
   private Boolean iluminacion;
+
+  @OneToMany(mappedBy = "cancha", cascade = CascadeType.ALL)
+  private List<Partido> partidos = new ArrayList<>();
 
   //Contractor
 
@@ -43,6 +48,10 @@ public class Cancha {
 
   public Boolean getIluminacion() {
     return iluminacion;
+  }
+
+  public List<Partido> getPartidos() {
+    return partidos;
   }
 
   //SETTERS

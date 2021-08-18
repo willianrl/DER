@@ -1,53 +1,56 @@
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "JugadorPorPartido")
 public class JugadorPorPartido {
 
-  @Column(name = "idPartido")
-  private String idPartido;
+  @Id
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "idPartido")
+  private Partido partido;
 
-  @Column(name = "idJugador")
-  private String idJugador;
+  @Id
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "idJugador")
+  private Jugador jugador;
 
-  @Column(name = "idPaleta")
-  private String idPaleta;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "idPaleta")
+  private Paleta paleta;
 
   //CONSTRUCTOR
 
-  public JugadorPorPartido(String idPartido, String idJugador, String idPaleta) {
-    this.idPartido = idPartido;
-    this.idJugador = idJugador;
-    this.idPaleta = idPaleta;
+  public JugadorPorPartido(Partido partido, Jugador jugador, Paleta paleta) {
+    this.partido = partido;
+    this.jugador = jugador;
+    this.paleta = paleta;
   }
 
   //GETTERS
 
-  public String getIdPartido() {
-    return idPartido;
+  public Partido getPartido() {
+    return partido;
   }
 
-  public String getIdJugador() {
-    return idJugador;
+  public Jugador getJugador() {
+    return jugador;
   }
 
-  public String getIdPaleta() {
-    return idPaleta;
+  public Paleta getPaleta() {
+    return paleta;
   }
 
   //SETTERS
 
-  public void setIdPartido(String idPartido) {
-    this.idPartido = idPartido;
+  public void setPartido(Partido partido) {
+    this.partido = partido;
   }
 
-  public void setIdJugador(String idJugador) {
-    this.idJugador = idJugador;
+  public void setJugador(Jugador jugador) {
+    this.jugador = jugador;
   }
 
-  public void setIdPaleta(String idPaleta) {
-    this.idPaleta = idPaleta;
+  public void setPaleta(Paleta paleta) {
+    this.paleta = paleta;
   }
 }

@@ -1,20 +1,19 @@
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Partido")
 public class Partido {
 
-
   @Id
   @Column(name = "idPartido")
-  private String idPartido;
+  private Long idPartido;
 
-  @Column(name = "idCancha")
-  private String idCancha;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name= "idCancha")
+  private Cancha cancha;
 
   @Column(name = "inicioPartido")
   private LocalDateTime inicioPartido;
@@ -22,23 +21,26 @@ public class Partido {
   @Column(name = "finPartido")
   private LocalDateTime finPartido;
 
+  @OneToMany(mappedBy = "partido", cascade = CascadeType.ALL)
+  private List<JugadorPorPartido> jugadorPorPartido = new ArrayList<>();
+
   //CONSTRUCTOR
 
-  public Partido(String idPartido, String idCancha, LocalDateTime inicioPartido, LocalDateTime finPartido) {
+  public Partido(Long idPartido, Cancha cancha, LocalDateTime inicioPartido, LocalDateTime finPartido) {
     this.idPartido = idPartido;
-    this.idCancha = idCancha;
+    this.cancha = cancha;
     this.inicioPartido = inicioPartido;
     this.finPartido = finPartido;
   }
 
   //GETTERS
 
-  public String getIdPartido() {
+  public Long getIdPartido() {
     return idPartido;
   }
 
-  public String getIdCancha() {
-    return idCancha;
+  public Cancha getCancha() {
+    return cancha;
   }
 
   public LocalDateTime getInicioPartido() {
@@ -49,14 +51,18 @@ public class Partido {
     return finPartido;
   }
 
+  public List<JugadorPorPartido> getJugadorPorPartido() {
+    return jugadorPorPartido;
+  }
+
   //SETTERS
 
-  public void setIdPartido(String idPartido) {
+  public void setIdPartido(Long idPartido) {
     this.idPartido = idPartido;
   }
 
-  public void setIdCancha(String idCancha) {
-    this.idCancha = idCancha;
+  public void setCancha(Cancha cancha) {
+    this.cancha = cancha;
   }
 
   public void setInicioPartido(LocalDateTime inicioPartido) {

@@ -1,7 +1,6 @@
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Paleta")
@@ -14,19 +13,23 @@ public class Paleta {
   @Column(name = "grosor")
   private Float grosor;
 
-  @Column(name = "idColor")
-  private String idColor;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "idColor")
+  private Color color;
 
-  @Column(name = "idFabricante")
-  private String idFabricante;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "idFabricante")
+  private Fabricante fabricante;
 
+  @OneToMany(mappedBy = "paleta", cascade = CascadeType.ALL)
+  private List<JugadorPorPartido> jugadorPorPartido = new ArrayList<>();
   //CONSTRUCTOR
 
-  public Paleta(String idPaleta, Float grosor, String idColor, String idFabricante) {
+  public Paleta(String idPaleta, Float grosor, Color color, Fabricante fabricante) {
     this.idPaleta = idPaleta;
     this.grosor = grosor;
-    this.idColor = idColor;
-    this.idFabricante = idFabricante;
+    this.color = color;
+    this.fabricante = fabricante;
   }
 
   //GETTERS
@@ -39,12 +42,16 @@ public class Paleta {
     return grosor;
   }
 
-  public String getIdColor() {
-    return idColor;
+  public Color getColor() {
+    return color;
   }
 
-  public String getIdFabricante() {
-    return idFabricante;
+  public Fabricante getFabricante() {
+    return fabricante;
+  }
+
+  public List<JugadorPorPartido> getJugadorPorPartido() {
+    return jugadorPorPartido;
   }
 
   //SETTETS
@@ -57,11 +64,11 @@ public class Paleta {
     this.grosor = grosor;
   }
 
-  public void setIdColor(String idColor) {
-    this.idColor = idColor;
+  public void setColor(Color color) {
+    this.color = color;
   }
 
-  public void setIdFabricante(String idFabricante) {
-    this.idFabricante = idFabricante;
+  public void setFabricante(Fabricante fabricante) {
+    this.fabricante = fabricante;
   }
 }
